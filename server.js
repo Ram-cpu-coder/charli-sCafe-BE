@@ -1,7 +1,7 @@
-import dbConnection from "./db/dbConnection"
+import dbConnection from "./db/dbConnection.js"
 import express from "express"
-import cors from cors
-import productsRouter from "./routes/productsRoute"
+import cors from "cors"
+import productsRouter from "./routes/productsRoute.js"
 // server initialization
 const PORT = process.env.PORT
 const app = express()
@@ -14,5 +14,5 @@ dbConnection()
 app.use("/api/v1/products", productsRouter)
 // listening the server
 app.listen(PORT, () => {
-    res.send(`Server running on localhost:${PORT}`)
+    console.log(`Server running on localhost:${PORT}`)
 })

@@ -1,0 +1,4 @@
+@PORT = 3000
+@endpoint = http://localhost:{{PORT}}/api/v1
+
+GET {{endpoint}}/products
