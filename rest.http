@@ -1,4 +1,13 @@
 @PORT = 3000
-@endpoint = http://localhost:{{PORT}}/api/v1
+@endpoint = http://localhost:{{PORT}}/api/v1/products
 
-GET {{endpoint}}/products
+GET {{endpoint}}
+
+###
+
+POST {{endpoint}}/add-product
+Content-Type: application/json
+
+{
+    "name" : "Morning Salsa"
+}
