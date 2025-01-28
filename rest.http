@@ -9,5 +9,12 @@ POST {{endpoint}}/add-product
 Content-Type: application/json
 
 {
-    "name" : "Morning Salsa"
+    "name" : "chowmein",
+    "price" : 23,
+    "rating" : 4.5,
+    "img": "random url",
+    "description": "food by ram"
 }
+
+###
+DELETE {{endpoint}}/delete/6798a4da7c4a869d2921116b

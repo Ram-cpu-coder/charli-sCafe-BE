@@ -2,8 +2,9 @@ import dbConnection from "./src/db/dbConnection.js";
 import express from "express";
 import cors from "cors";
 import productsRouter from "./src/routes/productsRoute.js";
-// server initialization
+import { errorHandler } from "./src/middlewares/ErrorHandler.js";
 
+// server initialization
 const PORT = process.env.PORT;
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 dbConnection()
     .then(() => {
         console.log(`DB connected successfully to the server.`);
+        // listening the server
         app.listen(PORT, () => {
             console.log(`Server running on localhost:${PORT}`);
         });
@@ -25,4 +27,6 @@ dbConnection()
 
 // routing the requests
 app.use("/api/v1/products", productsRouter);
-// listening the server
+
+// error Handling 
+app.use(errorHandler)
