@@ -4,10 +4,6 @@ const getProducts = async (req, res) => {
     try {
         const gotProducts = await Product.find()
         if (!gotProducts) {
-            // return next({
-            //     status: "error",
-            //     message: "Couldnot find any product"
-            // })
             return res.status(404).json({
                 status: "error",
                 message: "Couldnot find any product"
@@ -18,15 +14,8 @@ const getProducts = async (req, res) => {
             message: "GET SUCCESSFULLY!!",
             gotProducts
         })
-        // return next({
-        //     status: "success",
-        //     message: "GET SUCCESSFULLY!!!"
-        // })
+
     } catch (error) {
-        // return next({
-        //     status: "error",
-        //     message: "Not Allowed!!!"
-        // })
         return res.status(404).json({
             status: "error",
             message: "Not Allowed!!!",
@@ -109,4 +98,32 @@ const deleteProduct = async (req, res, next) => {
         })
     }
 }
-export { getProducts, addProduct, deleteProduct };
+
+const updateProduct = async (req, res) => {
+    try {
+        const { id } = req.params
+        const toBeUpdatedProduct = req.body
+        const updatedProduct = await Product.findByIdAndUpdate(id, toBeUpdatedProduct, { new: true })
+        if (!updateProduct) {
+            return res.status(404).json({
+                status: "error",
+                message: "No Item is given!!!"
+
+            })
+        }
+        return res.status(201).json({
+            status: "success",
+            message: "Updated successfully!!!",
+            updatedProduct
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            status: "error",
+            message: "Not Allowed !!!!"
+
+        })
+
+    }
+}
+export { getProducts, addProduct, deleteProduct, updateProduct };
