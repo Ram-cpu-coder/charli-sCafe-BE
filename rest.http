@@ -20,6 +20,18 @@ Content-Type: application/json
 DELETE {{endpoint}}/delete/6798a5da3790de2192be3381
 
 ###
+DELETE {{endpoint}}/delete
+Content-Type: application/json
+
+{
+"ids": [
+    "6798a84afe21abc1c78faa31", 
+    "6798a851fe21abc1c78faa34"
+    ]
+}
+
+
+###
 PUT {{endpoint}}/update/6798a84afe21abc1c78faa31
 Content-Type: application/json
 
@@ -27,5 +39,6 @@ Content-Type: application/json
     "name" : "momo",
     "price" : 24,
     "rating" : 5,
+    "img": "randomsd url"
 }
 

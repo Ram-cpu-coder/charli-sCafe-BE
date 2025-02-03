@@ -99,6 +99,31 @@ const deleteProduct = async (req, res, next) => {
     }
 }
 
+const deleteManyProducts = async (req, res, next) => {
+    try {
+        const { ids } = req.body
+        const toBeDeletedProducts = await Product.deleteMany({ _id: { $in: ids } })
+        if (toBeDeletedProducts.deletedCount === 0) {
+            res.status(404).json({
+                status: "error",
+                message: "Coulnot find the products !!!"
+            })
+        } else {
+            res.status(201).json({
+                status: "success",
+                message: "Successfully deleted"
+            })
+        }
+    }
+    catch (error) {
+        res.status(500).json({
+            status: "error",
+            message: "Internal Server Error"
+        })
+    }
+
+}
+
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params
@@ -126,4 +151,4 @@ const updateProduct = async (req, res) => {
 
     }
 }
-export { getProducts, addProduct, deleteProduct, updateProduct };
+export { getProducts, addProduct, deleteProduct, updateProduct, deleteManyProducts };
